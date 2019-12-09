@@ -3,6 +3,7 @@
 
 #include <string>
 #include <algorithm>
+#include <numeric>
 
 namespace AoC_4 {
     bool PWCheck(int _pw, bool (*f)(int)) {
@@ -12,20 +13,15 @@ namespace AoC_4 {
                 return false;
             }
         }
-        if (!std::any_of(pw.begin(), pw.end(), [pw, f](char c) { return f(std::count(pw.begin(), pw.end(), c)); })) {
-            return false;
-        }
-        return true;
+        return std::any_of(pw.begin(), pw.end(), [pw, f](char c) { return f(std::count(pw.begin(), pw.end(), c)); });
     }
 
     int Run(int pwStart, int pwEnd, bool (*f)(int)) {
         pwStart = std::max(pwStart, 100000);
         pwEnd = std::min(pwEnd, 999999);
-        int count = 0;
-        for (int i = pwStart; i <= pwEnd; i++) {
-            count += PWCheck(i, f) ? 1 : 0;
-        }
-        return count;
+        std::vector<int> range(pwEnd - pwStart + 1);
+        std::iota(range.begin(), range.end(), pwStart);
+        return std::accumulate(range.begin(), range.end(), 0, [f](int acc, int pw) { return acc + (PWCheck(pw, f) ? 1 : 0); });
     }
 
     int A(int pwStart, int pwEnd) {
