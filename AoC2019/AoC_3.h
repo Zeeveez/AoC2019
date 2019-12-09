@@ -33,9 +33,6 @@ namespace AoC_3 {
                     if (grid[pos].count(wireNo) == 0) {
                         grid[pos][wireNo] = n;
                     }
-                    else {
-                        grid[pos][wireNo] = std::min(grid[pos][wireNo], n);
-                    }
                 }
             }
         }
