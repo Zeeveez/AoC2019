@@ -6,7 +6,7 @@
 #include "IntCodeCPU.h"
 
 namespace AoC_2 {
-    int A(std::vector<int> program, int noun, int verb) {
+    long long A(std::vector<long long> program, long long noun, long long verb) {
         IntCodeCPU computer(program);
         computer.memory[1] = noun;
         computer.memory[2] = verb;
@@ -14,10 +14,10 @@ namespace AoC_2 {
         return computer.memory[0];
     }
 
-    int B(std::vector<int> program, int solution) {
+    long long B(std::vector<long long> program, long long solution) {
         IntCodeCPU computer(program);
-        for (int noun = 0; noun < 100; noun++) {
-            for (int verb = 0; verb < 100; verb++) {
+        for (long long noun = 0; noun < 100; noun++) {
+            for (long long verb = 0; verb < 100; verb++) {
                 if (A(program, noun, verb) == solution) {
                     return 100 * noun + verb;
                 }

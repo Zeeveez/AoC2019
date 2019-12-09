@@ -7,8 +7,8 @@
 #include "IntCodeCPU.h"
 
 namespace AoC_7 {
-    int A(std::vector<int> program) {
-        int thrust = 0;
+    long long A(std::vector<long long> program) {
+        long long thrust = 0;
         for (int a = 0; a < 5; a++) {
             for (int b = 0; b < 5; b++) {
                 if (a == b) { continue; }
@@ -58,8 +58,8 @@ namespace AoC_7 {
         return thrust;
     }
 
-    int B(std::vector<int> program) {
-        int thrust = 0;
+    long long B(std::vector<long long> program) {
+        long long thrust = 0;
         for (int a = 5; a < 10; a++) {
             for (int b = 5; b < 10; b++) {
                 if (a == b) { continue; }
@@ -85,7 +85,7 @@ namespace AoC_7 {
                             computer3.Input(c);
                             computer4.Input(d);
                             computer5.Input(e);
-                            int comp1input = 0;
+                            long long comp1input = 0;
                             while (!computer5.halted) {
                                 computer1.RunToInput();
                                 computer1.Input(comp1input);

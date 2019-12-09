@@ -135,6 +135,7 @@
     <ClInclude Include="AoC_6.h" />
     <ClInclude Include="AoC_7.h" />
     <ClInclude Include="AoC_8.h" />
+    <ClInclude Include="AoC_9.h" />
     <ClInclude Include="Inputs.h" />
     <ClInclude Include="IntCodeCPU.h" />
   </ItemGroup>
