@@ -43,7 +43,7 @@ namespace AoC_10 {
             }
         }
         else if (factor != -1) {
-            
+
             for (int x = station.first + dx / factor, y = station.second + dy / factor; x != sight.first; x += dx / factor, y += dy / factor) {
                 lineOfSight.push_back(std::pair<int, int>(x, y));
             }
@@ -71,21 +71,34 @@ namespace AoC_10 {
         return seeCount;
     }
 
-    int A(std::vector<std::string> mapData) {
-        std::vector<std::vector<int>> asteroids = CreateMap(mapData);
+    std::pair<int, int> GetBestStation(std::vector<std::vector<int>> asteroids) {
+        std::pair<int, int> bestStation = {};
         int maxSeeCount = 0;
         for (int x = 0; x < asteroids.size(); x++) {
             for (int y = 0; y < asteroids[0].size(); y++) {
                 if (asteroids[x][y] == 1) {
-                    maxSeeCount = std::max(CountVisibleAsteroids(std::pair<int, int>(x, y), asteroids), maxSeeCount);
+                    int seeCount = CountVisibleAsteroids(std::pair<int, int>(x, y), asteroids);
+                    if (seeCount > maxSeeCount) {
+                        maxSeeCount = seeCount;
+                        bestStation.first = x;
+                        bestStation.second = y;
+                    }
+
                 }
             }
         }
-        return maxSeeCount;
+        return bestStation;
+    }
+
+    int A(std::vector<std::string> mapData) {
+        std::vector<std::vector<int>> asteroids = CreateMap(mapData);
+        return CountVisibleAsteroids(GetBestStation(asteroids), asteroids);
     }
 
     int B(std::vector<std::string> mapData) {
         std::vector<std::vector<int>> asteroids = CreateMap(mapData);
+        std::pair<int, int> bestStation = GetBestStation(asteroids);
+        std::vector<std::pair<std::pair<int, int>, double>> angles = {};
         return -1;
     }
 }
