@@ -127,6 +127,7 @@
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AoC_10.h" />
     <ClInclude Include="AoC_1.h" />
     <ClInclude Include="AoC_2.h" />
     <ClInclude Include="AoC_3.h" />

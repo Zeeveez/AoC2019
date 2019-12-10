@@ -56,5 +56,8 @@
     <ClInclude Include="AoC_9.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AoC_10.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
