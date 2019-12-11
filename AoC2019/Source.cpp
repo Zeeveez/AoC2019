@@ -9,6 +9,7 @@
 #include "AoC_8.h"
 #include "AoC_9.h"
 #include "AoC_10.h"
+#include "AoC_11.h"
 
 int main() {
     std::cout << "01A:\t" << AoC_1::A(AoC_1_Input) << "\n";
@@ -31,4 +32,6 @@ int main() {
     std::cout << "09B:\t" << AoC_9::AB(AoC_9_Input, AoC_9_Input_B) << "\n";
     std::cout << "10A:\t" << AoC_10::A(AoC_10_Input) << "\n";
     std::cout << "10B:\t" << AoC_10::B(AoC_10_Input) << "\n";
+    std::cout << "11A:\t" << AoC_11::A(AoC_11_Input) << "\n";
+    std::cout << "11B:\t" << AoC_11::B(AoC_11_Input) << "\n";
 }
