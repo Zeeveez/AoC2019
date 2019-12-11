@@ -20,6 +20,7 @@ public:
     void Tick();
     long long MemoryRead(long long address);
     void MemoryWrite(long long address, long long value);
+    long long LoadParam(int addressMode, int paramNumber);
     void RunToEnd();
     void RunToInput();
     void RunToOutput();

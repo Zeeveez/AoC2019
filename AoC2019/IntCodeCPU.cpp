@@ -15,107 +15,50 @@ void IntCodeCPU::Tick() {
         int addressMode1 = memory[ip] / 100 % 10;
         int addressMode2 = memory[ip] / 1000 % 10;
         int addressMode3 = memory[ip] / 10000 % 10;
-        long long paramValue1;
-        long long paramValue2;
+        long long paramValue1 = LoadParam(addressMode1, 1);
+        long long paramValue2 = LoadParam(addressMode2, 2);
         long long outputAddress;
 
 
         switch (opcode) {
         case 1: // ADD
-            paramValue1 = addressMode1 == 0 ? MemoryRead(memory[ip + 1])
-                : addressMode1 == 1 ? memory[ip + 1]
-                : MemoryRead(relativeBase + memory[ip + 1]);
-            paramValue2 = addressMode2 == 0 ? MemoryRead(memory[ip + 2])
-                : addressMode2 == 1 ? memory[ip + 2]
-                : MemoryRead(relativeBase + memory[ip + 2]);
             outputAddress = addressMode3 == 0 ? memory[ip + 3] : relativeBase + memory[ip + 3];
-
             MemoryWrite(outputAddress, paramValue1 + paramValue2);
             ip += 4;
             break;
         case 2: // MUL
-            paramValue1 = addressMode1 == 0 ? MemoryRead(memory[ip + 1])
-                : addressMode1 == 1 ? memory[ip + 1]
-                : MemoryRead(relativeBase + memory[ip + 1]);
-            paramValue2 = addressMode2 == 0 ? MemoryRead(memory[ip + 2])
-                : addressMode2 == 1 ? memory[ip + 2]
-                : MemoryRead(relativeBase + memory[ip + 2]);
             outputAddress = addressMode3 == 0 ? memory[ip + 3] : relativeBase + memory[ip + 3];
-
             MemoryWrite(outputAddress, paramValue1 * paramValue2);
             ip += 4;
             break;
         case 3: // IN
             outputAddress = addressMode1 == 0 ? memory[ip + 1] : relativeBase + memory[ip + 1];
-
             MemoryWrite(outputAddress, input);
             awaitingInput = true;
             ip += 2;
             break;
         case 4: // OUT
-            paramValue1 = addressMode1 == 0 ? MemoryRead(memory[ip + 1])
-                : addressMode1 == 1 ? memory[ip + 1]
-                : MemoryRead(relativeBase + memory[ip + 1]);
             output = paramValue1;
             outputReady = true;
             ip += 2;
             break;
         case 5: // JNZ
-            paramValue1 = addressMode1 == 0 ? MemoryRead(memory[ip + 1])
-                : addressMode1 == 1 ? memory[ip + 1]
-                : MemoryRead(relativeBase + memory[ip + 1]);
-            paramValue2 = addressMode2 == 0 ? MemoryRead(memory[ip + 2])
-                : addressMode2 == 1 ? memory[ip + 2]
-                : MemoryRead(relativeBase + memory[ip + 2]);
-            if (paramValue1 != 0) {
-                ip = paramValue2;
-            }
-            else {
-                ip += 3;
-            }
+            ip = paramValue1 != 0 ? paramValue2 : ip + 3;
             break;
         case 6: // JEZ
-            paramValue1 = addressMode1 == 0 ? MemoryRead(memory[ip + 1])
-                : addressMode1 == 1 ? memory[ip + 1]
-                : MemoryRead(relativeBase + memory[ip + 1]);
-            paramValue2 = addressMode2 == 0 ? MemoryRead(memory[ip + 2])
-                : addressMode2 == 1 ? memory[ip + 2]
-                : MemoryRead(relativeBase + memory[ip + 2]);
-            if (paramValue1 == 0) {
-                ip = paramValue2;
-            }
-            else {
-                ip += 3;
-            }
+            ip = paramValue1 == 0 ? paramValue2 : ip + 3;
             break;
         case 7: // LT
-            paramValue1 = addressMode1 == 0 ? MemoryRead(memory[ip + 1])
-                : addressMode1 == 1 ? memory[ip + 1]
-                : MemoryRead(relativeBase + memory[ip + 1]);
-            paramValue2 = addressMode2 == 0 ? MemoryRead(memory[ip + 2])
-                : addressMode2 == 1 ? memory[ip + 2]
-                : MemoryRead(relativeBase + memory[ip + 2]);
             outputAddress = addressMode3 == 0 ? memory[ip + 3] : relativeBase + memory[ip + 3];
-
             MemoryWrite(outputAddress, paramValue1 < paramValue2 ? 1 : 0);
             ip += 4;
             break;
         case 8: // EQ
-            paramValue1 = addressMode1 == 0 ? MemoryRead(memory[ip + 1])
-                : addressMode1 == 1 ? memory[ip + 1]
-                : MemoryRead(relativeBase + memory[ip + 1]);
-            paramValue2 = addressMode2 == 0 ? MemoryRead(memory[ip + 2])
-                : addressMode2 == 1 ? memory[ip + 2]
-                : MemoryRead(relativeBase + memory[ip + 2]);
             outputAddress = addressMode3 == 0 ? memory[ip + 3] : relativeBase + memory[ip + 3];
-
             MemoryWrite(outputAddress, paramValue1 == paramValue2 ? 1 : 0);
             ip += 4;
             break;
         case 9: // MRB
-            paramValue1 = addressMode1 == 0 ? MemoryRead(memory[ip + 1])
-                : addressMode1 == 1 ? memory[ip + 1]
-                : MemoryRead(relativeBase + memory[ip + 1]);
             relativeBase += paramValue1;
             ip += 2;
             break;
@@ -124,6 +67,12 @@ void IntCodeCPU::Tick() {
             break;
         }
     }
+}
+
+long long IntCodeCPU::LoadParam(int addressMode, int paramNumber) {
+    return addressMode == 0 ? MemoryRead(MemoryRead(ip + paramNumber))
+        : addressMode == 1 ? MemoryRead(ip + paramNumber)
+        : MemoryRead(relativeBase + MemoryRead(ip + paramNumber));
 }
 
 long long IntCodeCPU::MemoryRead(long long address) {
