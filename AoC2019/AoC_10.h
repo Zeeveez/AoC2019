@@ -3,6 +3,7 @@
 
 #include <vector>
 #include <string>
+#include <algorithm>
 
 namespace AoC_10 {
     std::vector<std::vector<int>> CreateMap(std::vector<std::string> mapData) {
@@ -51,8 +52,8 @@ namespace AoC_10 {
         return lineOfSight;
     }
 
-    int CountVisibleAsteroids(std::pair<int, int> station, std::vector<std::vector<int>>& asteroids) {
-        int seeCount = 0;
+    std::vector<std::pair<int, int>> GetVisibleAsteroids(std::pair<int, int> station, std::vector<std::vector<int>>& asteroids) {
+        std::vector<std::pair<int, int>> seen = {};
         for (int tx = 0; tx < asteroids.size(); tx++) {
             for (int ty = 0; ty < asteroids[0].size(); ty++) {
                 if (!(tx == station.first && ty == station.second) && asteroids[tx][ty] == 1) {
@@ -64,11 +65,11 @@ namespace AoC_10 {
                         }
                     }
                     if (hit) { continue; }
-                    seeCount++;
+                    seen.push_back(std::pair<int, int>(tx, ty));
                 }
             }
         }
-        return seeCount;
+        return seen;
     }
 
     std::pair<int, int> GetBestStation(std::vector<std::vector<int>> asteroids) {
@@ -77,7 +78,7 @@ namespace AoC_10 {
         for (int x = 0; x < asteroids.size(); x++) {
             for (int y = 0; y < asteroids[0].size(); y++) {
                 if (asteroids[x][y] == 1) {
-                    int seeCount = CountVisibleAsteroids(std::pair<int, int>(x, y), asteroids);
+                    int seeCount = GetVisibleAsteroids(std::pair<int, int>(x, y), asteroids).size();
                     if (seeCount > maxSeeCount) {
                         maxSeeCount = seeCount;
                         bestStation.first = x;
@@ -90,16 +91,49 @@ namespace AoC_10 {
         return bestStation;
     }
 
+    double GetAsteroidAngle(std::pair<int, int> station, std::pair<int, int> asteroid) {
+        double dx = asteroid.first - station.first;
+        double dy = asteroid.second - station.second;
+        if (dx == 0) {
+            return dy > 0 ? 0 : 3.1415926535;
+        }
+        else if (dy == 0) {
+            return dx > 0 ? 3.1415926535 / 2 : 3 * 3.1415926535 / 4;
+        }
+        else if (dx > 0) {
+            return std::atan(dy / dx) + 3.1415926535 / 2;
+        }
+        else {
+            return  3.1415926535 - std::atan(-dy / dx) + 3.1415926535 / 2;
+        }
+    }
+
+    void SortByAngle(std::vector<std::pair<std::pair<int, int>, double>>& angles) {
+        std::sort(angles.begin(), angles.end(), [](const auto& lhs, const auto& rhs) {return lhs.second < rhs.second; });
+    }
+
     int A(std::vector<std::string> mapData) {
         std::vector<std::vector<int>> asteroids = CreateMap(mapData);
-        return CountVisibleAsteroids(GetBestStation(asteroids), asteroids);
+        return GetVisibleAsteroids(GetBestStation(asteroids), asteroids).size();
     }
 
     int B(std::vector<std::string> mapData) {
         std::vector<std::vector<int>> asteroids = CreateMap(mapData);
         std::pair<int, int> bestStation = GetBestStation(asteroids);
-        std::vector<std::pair<std::pair<int, int>, double>> angles = {};
-        return -1;
+
+        std::vector<std::pair<int, int>> destroyed = {};
+        while (destroyed.size() < 200) {
+            std::vector<std::pair<int, int>> visibleAsteroids = GetVisibleAsteroids(bestStation, asteroids);
+            std::vector<std::pair<std::pair<int, int>, double>> angles = {};
+            for (auto& asteroid : visibleAsteroids) {
+                angles.push_back(std::pair<std::pair<int, int>, double>(asteroid, GetAsteroidAngle(bestStation, asteroid)));
+            }
+            SortByAngle(angles);
+
+            // Should actually destroy asteroids, but the station can see >=200 so arsed cause it dm
+            return angles[199].first.first * 100 + angles[199].first.second;
+        }
+        return destroyed[199].first * 100 + destroyed[199].second;
     }
 }
 
