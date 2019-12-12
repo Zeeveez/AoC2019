@@ -18,7 +18,7 @@ namespace AoC_10 {
         return asteroids;
     }
 
-    int LowestCommonFactor(int a, int b) {
+    int GreatestCommonFactor(int a, int b) {
         int f = -1;
         for (int i = 2; i <= std::min(std::abs(a), std::abs(b)); i++) {
             if (std::abs(a) % i == 0 && std::abs(b) % i == 0) {
@@ -32,7 +32,7 @@ namespace AoC_10 {
         std::vector<std::pair<int, int>> lineOfSight = {};
         int dx = sight.first - station.first;
         int dy = sight.second - station.second;
-        int factor = LowestCommonFactor(dx, dy);
+        int factor = GreatestCommonFactor(dx, dy);
         if (dx == 0) {
             for (int i = 1; i < std::abs(dy); i++) {
                 lineOfSight.push_back(std::pair<int, int>(station.first, station.second + i * dy / std::abs(dy)));
