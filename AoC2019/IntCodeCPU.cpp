@@ -84,9 +84,6 @@ void IntCodeCPU::Tick() {
 }
 
 long long IntCodeCPU::LoadParam(int addressMode, int paramNumber) {
-    if (ip + paramNumber == 70) {
-        int x = 0;
-    }
     return addressMode == 0 ? MemoryRead(MemoryRead(ip + paramNumber))
         : addressMode == 1 ? MemoryRead(ip + paramNumber)
         : MemoryRead(relativeBase + MemoryRead(ip + paramNumber));
