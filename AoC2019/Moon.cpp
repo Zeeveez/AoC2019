@@ -5,11 +5,20 @@
 
 Moon::Moon(int x, int y, int z) {
     pos = { x,y,z };
+    initPos = { x,y,z };
     vel = { 0,0,0 };
 }
 
 int Moon::GetEnergy() {
     return (std::abs(pos[0]) + std::abs(pos[1]) + std::abs(pos[2])) * (std::abs(vel[0]) + std::abs(vel[1]) + std::abs(vel[2]));
+}
+
+bool Moon::AtStart() {
+    return AtStart(0) && AtStart(1) && AtStart(2);
+}
+
+bool Moon::AtStart(int dimension) {
+    return vel[dimension] == 0 && pos[dimension] == initPos[dimension];
 }
 
 void Moon::Move() {
