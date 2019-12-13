@@ -71,5 +71,8 @@
     <ClInclude Include="AoC_12.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="AoC_13.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

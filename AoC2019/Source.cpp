@@ -11,6 +11,7 @@
 #include "AoC_10.h"
 #include "AoC_11.h"
 #include "AoC_12.h"
+#include "AoC_13.h"
 
 int main() {
     //std::cout << "01A:\t" << AoC_1::A(AoC_1_Input) << "\n";
@@ -35,6 +36,8 @@ int main() {
     //std::cout << "10B:\t" << AoC_10::B(AoC_10_Input) << "\n";
     //std::cout << "11A:\t" << AoC_11::A(AoC_11_Input) << "\n";
     //std::cout << "11B:\t" << AoC_11::B(AoC_11_Input) << "\n";
-    std::cout << "12A:\t" << AoC_12::A(AoC_12_Input) << "\n";
-    std::cout << "12B:\t" << AoC_12::B(AoC_12_Input) << "\n";
+    //std::cout << "12A:\t" << AoC_12::A(AoC_12_Input) << "\n";
+    //std::cout << "12B:\t" << AoC_12::B(AoC_12_Input) << "\n";
+    std::cout << "13A:\t" << AoC_13::A(AoC_13_Input) << "\n";
+    std::cout << "13B:\t" << AoC_13::B(AoC_13_Input) << "\n";
 }

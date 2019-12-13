@@ -24,6 +24,7 @@ public:
     void RunToEnd();
     void RunToInput();
     void RunToOutput();
+    void RunToIO();
     void Input(long long input);
     long long Output();
 };
