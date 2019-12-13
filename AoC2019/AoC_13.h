@@ -2,8 +2,7 @@
 #define AOC_13_H
 
 #include <map>
-#include <algorithm>
-#include <string>
+#include <numeric>
 
 #include "IntCodeCPU.h"
 
@@ -29,25 +28,28 @@ namespace AoC_13 {
         std::map<std::pair<int, int>, int> tiles = {};
         std::vector<int> outputs = { 0,0,0 };
         int currentOutput = 0;
+        int paddleX = 15;
+        int ballX = 15;
+        int score = 0;
         while (!computer.halted) {
-            computer.RunToIO();
+            computer.RunToOutput();
             if (computer.outputReady) {
                 outputs[currentOutput++] = computer.Output();
                 currentOutput %= 3;
                 if (currentOutput == 0) {
                     if (outputs[0] == -1 && outputs[1] == 0) {
-                        std::cout << "Score: " << outputs[2] << "\n";
+                        score = outputs[2];
                     }
                     else {
                         tiles[std::pair<int, int>(outputs[0], outputs[1])] = outputs[2];
+                        if (outputs[2] == 3) { paddleX = outputs[0]; }
+                        if (outputs[2] == 4) { ballX = outputs[0]; }
                     }
                 }
             }
-            else if (computer.awaitingInput) {
-                computer.Input(0);
-            }
+            computer.Input(paddleX < ballX ? 1 : paddleX > ballX ? -1 : 0);
         }
-        return -1;
+        return score;
     }
 }
 
