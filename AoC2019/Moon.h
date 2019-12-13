@@ -2,22 +2,20 @@
 #define MOON_H
 
 #include <string>
+#include <vector>
 
 class Moon {
 private:
-    int x;
-    int y;
-    int z;
-    int xVel;
-    int yVel;
-    int zVel;
+    std::vector<int> pos;
+    std::vector<int> vel;
 
 public:
     Moon(int x, int y, int z);
     int GetEnergy();
-    std::string GetPosition();
     void Move();
+    void Move(int dimension);
     void UpdateVel(Moon& otherMoon);
+    void UpdateVel(Moon& otherMoon, int dimension);
 };
 
 #endif
