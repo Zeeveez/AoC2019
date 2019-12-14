@@ -12,7 +12,7 @@ private:
 public:
     std::vector<long long> memory;
     bool halted;
-    long long ip;
+    unsigned int ip;
     bool awaitingInput;
     bool outputReady;
 
@@ -20,7 +20,7 @@ public:
     void Tick();
     long long MemoryRead(long long address);
     void MemoryWrite(long long address, long long value);
-    long long LoadParam(int addressMode, int paramNumber);
+    long long LoadParam(long long addressMode, long long paramNumber);
     void RunToEnd();
     void RunToInput();
     void RunToOutput();

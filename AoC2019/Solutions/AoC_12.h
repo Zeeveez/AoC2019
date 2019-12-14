@@ -7,7 +7,7 @@
 #include <iostream>
 #include <unordered_set>
 
-#include "../Classes/Moon/Moon.h"
+#include "Classes/Moon/Moon.h"
 
 namespace AoC_12 {
     long long gcd(long long a, long long b) {
@@ -25,12 +25,12 @@ namespace AoC_12 {
         }
 
         for (int i = 0; i < 1000; i++) {
-            for (int m = 0; m < moons.size(); m++) {
-                for (int om = m + 1; om < moons.size(); om++) {
+            for (size_t m = 0; m < moons.size(); m++) {
+                for (size_t om = m + 1; om < moons.size(); om++) {
                     moons[m].UpdateVel(moons[om]);
                 }
             }
-            for (int m = 0; m < moons.size(); m++) {
+            for (size_t m = 0; m < moons.size(); m++) {
                 moons[m].Move();
             }
         }
@@ -48,12 +48,12 @@ namespace AoC_12 {
         std::vector<long long> periods = { -1,-1,-1 };
         do {
             ticks++;
-            for (int m = 0; m < moons.size(); m++) {
-                for (int om = m + 1; om < moons.size(); om++) {
+            for (size_t m = 0; m < moons.size(); m++) {
+                for (size_t om = m + 1; om < moons.size(); om++) {
                     moons[m].UpdateVel(moons[om]);
                 }
             }
-            for (int m = 0; m < moons.size(); m++) {
+            for (size_t m = 0; m < moons.size(); m++) {
                 moons[m].Move();
             }
             for (int i = 0; i < 3; i++) {

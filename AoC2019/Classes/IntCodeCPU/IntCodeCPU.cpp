@@ -11,10 +11,10 @@ IntCodeCPU::IntCodeCPU(std::vector<long long> program) {
 
 void IntCodeCPU::Tick() {
     if (!halted) {
-        int opcode = memory[ip] % 100;
-        int addressMode1 = memory[ip] / 100 % 10;
-        int addressMode2 = memory[ip] / 1000 % 10;
-        int addressMode3 = memory[ip] / 10000 % 10;
+        long long opcode = memory[ip] % 100;
+        long long addressMode1 = memory[ip] / 100 % 10;
+        long long addressMode2 = memory[ip] / 1000 % 10;
+        long long addressMode3 = memory[ip] / 10000 % 10;
         long long paramValue1;
         long long paramValue2;
         long long outputAddress;
@@ -50,12 +50,12 @@ void IntCodeCPU::Tick() {
         case 5: // JNZ
             paramValue1 = LoadParam(addressMode1, 1);
             paramValue2 = LoadParam(addressMode2, 2);
-            ip = paramValue1 != 0 ? paramValue2 : ip + 3;
+            ip = paramValue1 != 0 ? (unsigned int)paramValue2 : ip + 3;
             break;
         case 6: // JEZ
             paramValue1 = LoadParam(addressMode1, 1);
             paramValue2 = LoadParam(addressMode2, 2);
-            ip = paramValue1 == 0 ? paramValue2 : ip + 3;
+            ip = paramValue1 == 0 ? (unsigned int)paramValue2 : ip + 3;
             break;
         case 7: // LT
             paramValue1 = LoadParam(addressMode1, 1);
@@ -83,7 +83,7 @@ void IntCodeCPU::Tick() {
     }
 }
 
-long long IntCodeCPU::LoadParam(int addressMode, int paramNumber) {
+long long IntCodeCPU::LoadParam(long long addressMode, long long paramNumber) {
     return addressMode == 0 ? MemoryRead(MemoryRead(ip + paramNumber))
         : addressMode == 1 ? MemoryRead(ip + paramNumber)
         : MemoryRead(relativeBase + MemoryRead(ip + paramNumber));
@@ -91,7 +91,7 @@ long long IntCodeCPU::LoadParam(int addressMode, int paramNumber) {
 
 long long IntCodeCPU::MemoryRead(long long address) {
     if (address < memory.size()) {
-        return memory[address];
+        return memory[(unsigned int)address];
     }
     return 0;
 }
@@ -100,7 +100,7 @@ void IntCodeCPU::MemoryWrite(long long address, long long value) {
     while (memory.size() < address + 1) {
         memory.push_back(0);
     }
-    memory[address] = value;
+    memory[(unsigned int)address] = value;
 }
 
 void IntCodeCPU::RunToEnd() {

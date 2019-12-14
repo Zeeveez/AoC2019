@@ -5,12 +5,12 @@
 #include <algorithm>
 #include <string>
 
-#include "../Classes/IntCodeCPU/IntCodeCPU.h"
+#include "Classes/IntCodeCPU/IntCodeCPU.h"
 
 namespace AoC_11 {
     long long A(std::vector<long long> program) {
         IntCodeCPU computer(program);
-        std::map<std::pair<int, int>, int> panels = {};
+        std::map<std::pair<int, int>, long long> panels = {};
         int x = 0;
         int y = 0;
         int dir = 0; // Up
@@ -41,7 +41,7 @@ namespace AoC_11 {
 
     std::string B(std::vector<long long> program) {
         IntCodeCPU computer(program);
-        std::map<std::pair<int, int>, int> panels = { { std::pair<int, int>(0, 0), 1 } };
+        std::map<std::pair<int, int>, long long> panels = { { std::pair<int, int>(0, 0), 1 } };
         int x = 0;
         int y = 0;
         int dir = 0; // Up

@@ -8,9 +8,9 @@
 namespace AoC_10 {
     std::vector<std::vector<int>> CreateMap(std::vector<std::string> mapData) {
         std::vector<std::vector<int>> asteroids = {};
-        for (int x = 0; x < mapData[0].size(); x++) {
+        for (size_t x = 0; x < mapData[0].size(); x++) {
             std::vector<int> col = {};
-            for (int y = 0; y < mapData.size(); y++) {
+            for (size_t y = 0; y < mapData.size(); y++) {
                 col.push_back(mapData[y][x] == '#' ? 1 : 0);
             }
             asteroids.push_back(col);
@@ -54,8 +54,8 @@ namespace AoC_10 {
 
     std::vector<std::pair<int, int>> GetVisibleAsteroids(std::pair<int, int> station, std::vector<std::vector<int>>& asteroids) {
         std::vector<std::pair<int, int>> seen = {};
-        for (int tx = 0; tx < asteroids.size(); tx++) {
-            for (int ty = 0; ty < asteroids[0].size(); ty++) {
+        for (size_t tx = 0; tx < asteroids.size(); tx++) {
+            for (size_t ty = 0; ty < asteroids[0].size(); ty++) {
                 if (!(tx == station.first && ty == station.second) && asteroids[tx][ty] == 1) {
                     bool hit = false;
                     for (std::pair<int, int>& point : GetLineOfSight(std::pair<int, int>(station.first, station.second), std::pair<int, int>(tx, ty))) {
@@ -75,8 +75,8 @@ namespace AoC_10 {
     std::pair<int, int> GetBestStation(std::vector<std::vector<int>> asteroids) {
         std::pair<int, int> bestStation = {};
         int maxSeeCount = 0;
-        for (int x = 0; x < asteroids.size(); x++) {
-            for (int y = 0; y < asteroids[0].size(); y++) {
+        for (size_t x = 0; x < asteroids.size(); x++) {
+            for (size_t y = 0; y < asteroids[0].size(); y++) {
                 if (asteroids[x][y] == 1) {
                     int seeCount = GetVisibleAsteroids(std::pair<int, int>(x, y), asteroids).size();
                     if (seeCount > maxSeeCount) {
@@ -92,8 +92,8 @@ namespace AoC_10 {
     }
 
     double GetAsteroidAngle(std::pair<int, int> station, std::pair<int, int> asteroid) {
-        double dx = asteroid.first - station.first;
-        double dy = asteroid.second - station.second;
+        double dx = (double)(asteroid.first - station.first);
+        double dy = (double)(asteroid.second - station.second);
         if (dx == 0) {
             return dy > 0 ? 0 : 3.1415926535;
         }

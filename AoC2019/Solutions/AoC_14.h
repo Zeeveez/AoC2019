@@ -38,9 +38,9 @@ namespace AoC_14 {
         return needs["ORE"];
     }
 
-    int B(std::map<std::string, std::pair<int, std::vector<std::pair<int, std::string>>>> formulae) {
+    long long B(std::map<std::string, std::pair<int, std::vector<std::pair<int, std::string>>>> formulae) {
         std::map<std::string, long long> needs = { {"FUEL",1}, {"ORE",0} };
-        int fuel = 1;
+        long long fuel = 1;
         long long roughOrePerFuel = 0;
         while (true) {
             for (auto& need : needs) {

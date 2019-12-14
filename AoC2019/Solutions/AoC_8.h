@@ -8,7 +8,7 @@
 namespace AoC_8 {
     std::vector<std::vector<std::vector<int>>> CreateImage(std::string imgData, int width, int height) {
         std::vector<std::vector<std::vector<int>>> img = {};
-        for (int layerNo = 0; layerNo < imgData.size() / (width * height); layerNo++) {
+        for (size_t layerNo = 0; layerNo < imgData.size() / (width * height); layerNo++) {
             std::vector<std::vector<int>> layer = {};
             for (int x = 0; x < width; x++) {
                 std::vector<int> col = {};
@@ -24,10 +24,10 @@ namespace AoC_8 {
 
     std::vector<std::vector<int>> FlattenLayers(std::vector<std::vector<std::vector<int>>> img) {
         std::vector<std::vector<int>> flattenedImage = {};
-        for (int x = 0; x < img[0].size(); x++) {
+        for (size_t x = 0; x < img[0].size(); x++) {
             std::vector<int> col = {};
-            for (int y = 0; y < img[0][x].size(); y++) {
-                for (int layer = 0; layer < img.size(); layer++) {
+            for (size_t y = 0; y < img[0][x].size(); y++) {
+                for (size_t layer = 0; layer < img.size(); layer++) {
                     if (img[layer][x][y] != 2) {
                         col.push_back(img[layer][x][y]);
                         break;
@@ -68,9 +68,9 @@ namespace AoC_8 {
     std::string B(std::string imgData, int width, int height) {
         std::vector<std::vector<int>> img = FlattenLayers(CreateImage(imgData, width, height));
         std::string output = "";
-        for (int y = 0; y < img[0].size(); y++) {
+        for (size_t y = 0; y < img[0].size(); y++) {
             output += "\n";
-            for (int x = 0; x < img.size(); x++) {
+            for (size_t x = 0; x < img.size(); x++) {
                 output += (img[x][y] == 0 ? ' ' : '#');
             }
         }

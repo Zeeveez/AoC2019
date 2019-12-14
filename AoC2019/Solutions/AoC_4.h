@@ -8,7 +8,7 @@
 namespace AoC_4 {
     bool PWCheck(int _pw, bool (*f)(int)) {
         std::string pw = std::to_string(_pw);
-        for (int i = 0; i < pw.length() - 1; i++) {
+        for (size_t i = 0; i < pw.length() - 1; i++) {
             if (pw[i + 1] < pw[i]) {
                 return false;
             }

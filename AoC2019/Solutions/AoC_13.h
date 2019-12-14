@@ -4,33 +4,33 @@
 #include <map>
 #include <numeric>
 
-#include "../Classes/IntCodeCPU/IntCodeCPU.h"
+#include "Classes/IntCodeCPU/IntCodeCPU.h"
 
 namespace AoC_13 {
-    int A(std::vector<long long> program) {
+    long long A(std::vector<long long> program) {
         IntCodeCPU computer(program);
-        std::map<std::pair<int, int>, int> tiles = {};
+        std::map<std::pair<long long, long long>, long long> tiles = {};
         while (!computer.halted) {
             computer.RunToOutput();
-            int x = computer.Output();
+            long long x = computer.Output();
             computer.RunToOutput();
-            int y = computer.Output();
+            long long y = computer.Output();
             computer.RunToOutput();
-            int tile = computer.Output();
-            tiles[std::pair<int, int>(x, y)] = tile;
+            long long tile = computer.Output();
+            tiles[std::pair<long long, long long>(x, y)] = tile;
         }
-        return std::accumulate(tiles.begin(), tiles.end(), 0, [](int acc, std::pair<std::pair<int, int>, int> tile) {return acc + (tile.second == 2 ? 1 : 0); });
+        return std::accumulate(tiles.begin(), tiles.end(), 0, [](long long acc, std::pair<std::pair<long long, long long>, long long> tile) {return acc + (tile.second == 2 ? 1 : 0); });
     }
 
     long long B(std::vector<long long> program) {
         IntCodeCPU computer(program);
         computer.memory[0] = 2; // Set F2P
-        std::map<std::pair<int, int>, int> tiles = {};
-        std::vector<int> outputs = { 0,0,0 };
-        int currentOutput = 0;
-        int paddleX = 15;
-        int ballX = 15;
-        int score = 0;
+        std::map<std::pair<long long, long long>, long long> tiles = {};
+        std::vector<long long> outputs = { 0,0,0 };
+        unsigned int currentOutput = 0;
+        long long paddleX = 15;
+        long long ballX = 15;
+        long long score = 0;
         while (!computer.halted) {
             computer.RunToOutput();
             if (computer.outputReady) {
@@ -41,7 +41,7 @@ namespace AoC_13 {
                         score = outputs[2];
                     }
                     else {
-                        tiles[std::pair<int, int>(outputs[0], outputs[1])] = outputs[2];
+                        tiles[std::pair<long long, long long>(outputs[0], outputs[1])] = outputs[2];
                         if (outputs[2] == 3) { paddleX = outputs[0]; }
                         if (outputs[2] == 4) { ballX = outputs[0]; }
                     }
