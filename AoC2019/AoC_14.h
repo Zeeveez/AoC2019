@@ -39,8 +39,9 @@ namespace AoC_14 {
     }
 
     int B(std::map<std::string, std::pair<int, std::vector<std::pair<int, std::string>>>> formulae) {
-        std::map<std::string, long long> needs = { {"FUEL",3279000}, {"ORE",0} };
-        int fuel = 3279000;
+        std::map<std::string, long long> needs = { {"FUEL",1}, {"ORE",0} };
+        int fuel = 1;
+        long long roughOrePerFuel = 0;
         while (true) {
             for (auto& need : needs) {
                 if (need.first != "ORE") {
@@ -71,16 +72,26 @@ namespace AoC_14 {
                 }
             }
             if (done) {
+                if (fuel == 1) {
+                    roughOrePerFuel = needs["ORE"];
+                }
                 if (needs["ORE"] < 1000000000000) {
-                    needs["FUEL"] += 1;
-                    fuel++;
+                    long long oreRemaining = 1000000000000 - needs["ORE"];
+                    if (oreRemaining > roughOrePerFuel * 100) {
+                        needs["FUEL"] += (oreRemaining / roughOrePerFuel) - 100 + 1;
+                        fuel += (oreRemaining / roughOrePerFuel) - 100 + 1;
+                    }
+                    else {
+                        needs["FUEL"]++;
+                        fuel++;
+                    }
                 }
                 else {
                     break;
                 }
             }
         }
-        return fuel;
+        return fuel - 1;
     }
 }
 
