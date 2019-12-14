@@ -147,6 +147,53 @@
     <ClInclude Include="Solutions\AoC_8.h" />
     <ClInclude Include="Solutions\AoC_9.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Inputs\1">
+      <DeploymentContent>true</DeploymentContent>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+      </ExcludedFromBuild>
+      <FileType>Document</FileType>
+    </None>
+    <None Include="Inputs\10">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Inputs\11">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Inputs\12">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Inputs\13">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Inputs\14">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Inputs\2">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Inputs\3">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Inputs\4">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Inputs\5">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Inputs\6">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Inputs\7">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Inputs\8">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+    <None Include="Inputs\9">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

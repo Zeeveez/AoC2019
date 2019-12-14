@@ -81,4 +81,48 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Inputs\2">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Inputs\3">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Inputs\4">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Inputs\5">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Inputs\6">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Inputs\7">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Inputs\8">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Inputs\9">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Inputs\10">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Inputs\11">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Inputs\12">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Inputs\13">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Inputs\14">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Inputs\1">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>
