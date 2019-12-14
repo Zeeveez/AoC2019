@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "IntCodeCPU.h"
+#include "../Classes/IntCodeCPU/IntCodeCPU.h"
 
 namespace AoC_5 {
     long long AB(std::vector<long long> program, int systemID) {

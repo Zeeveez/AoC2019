@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "IntCodeCPU.h"
+#include "../Classes/IntCodeCPU/IntCodeCPU.h"
 
 namespace AoC_2 {
     long long A(std::vector<long long> program, long long noun, long long verb) {

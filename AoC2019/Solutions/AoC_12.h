@@ -6,7 +6,8 @@
 #include <string>
 #include <iostream>
 #include <unordered_set>
-#include "Moon.h"
+
+#include "../Classes/Moon/Moon.h"
 
 namespace AoC_12 {
     long long gcd(long long a, long long b) {

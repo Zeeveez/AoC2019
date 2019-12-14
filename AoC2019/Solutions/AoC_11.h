@@ -5,7 +5,7 @@
 #include <algorithm>
 #include <string>
 
-#include "IntCodeCPU.h"
+#include "../Classes/IntCodeCPU/IntCodeCPU.h"
 
 namespace AoC_11 {
     long long A(std::vector<long long> program) {
