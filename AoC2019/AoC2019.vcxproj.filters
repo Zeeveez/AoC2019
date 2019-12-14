@@ -124,5 +124,38 @@
     <None Include="Inputs\1">
       <Filter>Resource Files</Filter>
     </None>
+    <None Include="Inputs\15">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Inputs\16">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Inputs\17">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Inputs\18">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Inputs\19">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Inputs\20">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Inputs\21">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Inputs\22">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Inputs\23">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Inputs\24">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="Inputs\25">
+      <Filter>Resource Files</Filter>
+    </None>
   </ItemGroup>
 </Project>
