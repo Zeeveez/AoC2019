@@ -133,6 +133,7 @@
     <ClInclude Include="AoC_11.h" />
     <ClInclude Include="AoC_12.h" />
     <ClInclude Include="AoC_13.h" />
+    <ClInclude Include="AoC_14.h" />
     <ClInclude Include="AoC_2.h" />
     <ClInclude Include="AoC_3.h" />
     <ClInclude Include="AoC_4.h" />
