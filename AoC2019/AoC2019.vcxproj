@@ -138,7 +138,18 @@
     <ClInclude Include="Solutions\AoC_12.h" />
     <ClInclude Include="Solutions\AoC_13.h" />
     <ClInclude Include="Solutions\AoC_14.h" />
+    <ClInclude Include="Solutions\AoC_15.h" />
+    <ClInclude Include="Solutions\AoC_16.h" />
+    <ClInclude Include="Solutions\AoC_17.h" />
+    <ClInclude Include="Solutions\AoC_18.h" />
+    <ClInclude Include="Solutions\AoC_19.h" />
     <ClInclude Include="Solutions\AoC_2.h" />
+    <ClInclude Include="Solutions\AoC_20.h" />
+    <ClInclude Include="Solutions\AoC_21.h" />
+    <ClInclude Include="Solutions\AoC_22.h" />
+    <ClInclude Include="Solutions\AoC_23.h" />
+    <ClInclude Include="Solutions\AoC_24.h" />
+    <ClInclude Include="Solutions\AoC_25.h" />
     <ClInclude Include="Solutions\AoC_3.h" />
     <ClInclude Include="Solutions\AoC_4.h" />
     <ClInclude Include="Solutions\AoC_5.h" />
@@ -173,52 +184,52 @@
       <DeploymentContent>true</DeploymentContent>
     </None>
     <None Include="Inputs\15">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        <DeploymentContent>true</DeploymentContent>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DeploymentContent>true</DeploymentContent>
     </None>
     <None Include="Inputs\16">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        <DeploymentContent>true</DeploymentContent>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DeploymentContent>true</DeploymentContent>
     </None>
     <None Include="Inputs\17">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        <DeploymentContent>true</DeploymentContent>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DeploymentContent>true</DeploymentContent>
     </None>
     <None Include="Inputs\18">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        <DeploymentContent>true</DeploymentContent>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DeploymentContent>true</DeploymentContent>
     </None>
     <None Include="Inputs\19">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        <DeploymentContent>true</DeploymentContent>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DeploymentContent>true</DeploymentContent>
     </None>
     <None Include="Inputs\2">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DeploymentContent>true</DeploymentContent>
     </None>
     <None Include="Inputs\20">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        <DeploymentContent>true</DeploymentContent>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DeploymentContent>true</DeploymentContent>
     </None>
     <None Include="Inputs\21">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DeploymentContent>true</DeploymentContent>
     </None>
     <None Include="Inputs\22">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        <DeploymentContent>true</DeploymentContent>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DeploymentContent>true</DeploymentContent>
     </None>
     <None Include="Inputs\23">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DeploymentContent>true</DeploymentContent>
     </None>
     <None Include="Inputs\24">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        <DeploymentContent>true</DeploymentContent>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DeploymentContent>true</DeploymentContent>
     </None>
     <None Include="Inputs\25">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-        <DeploymentContent>true</DeploymentContent>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DeploymentContent>true</DeploymentContent>
     </None>
     <None Include="Inputs\3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

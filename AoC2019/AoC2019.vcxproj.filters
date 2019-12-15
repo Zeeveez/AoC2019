@@ -80,6 +80,39 @@
     <ClInclude Include="Inputs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Solutions\AoC_15.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Solutions\AoC_16.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Solutions\AoC_17.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Solutions\AoC_18.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Solutions\AoC_19.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Solutions\AoC_20.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Solutions\AoC_21.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Solutions\AoC_22.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Solutions\AoC_23.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Solutions\AoC_24.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Solutions\AoC_25.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Inputs\2">
