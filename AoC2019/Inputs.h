@@ -254,4 +254,6 @@ std::map<std::string, std::pair<int, std::vector<std::pair<int, std::string>>>> 
     {"XSNKB",{4,{{1,"WJDF"},{1,"LKPQG"}}}}
 };
 
+std::vector<long long> AoC_15_Input = Parser::LoadCSV(15);
+
 #endif
