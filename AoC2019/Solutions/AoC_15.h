@@ -96,6 +96,26 @@ namespace AoC_15 {
         return true;
     }
 
+    std::pair<long long, long long> FindStart(std::map<std::pair<long long, long long>, long long> mazeMap) {
+        int xMin = (*std::min_element(mazeMap.begin(), mazeMap.end(),
+            [](const auto& panel1, const auto& panel2) {
+                return panel1.first.first < panel2.first.first;
+            })).first.first;
+        int xMax = (*std::max_element(mazeMap.begin(), mazeMap.end(),
+            [](const auto& panel1, const auto& panel2) {
+                return panel1.first.first < panel2.first.first;
+            })).first.first;
+        int yMin = (*std::min_element(mazeMap.begin(), mazeMap.end(),
+            [](const auto& panel1, const auto& panel2) {
+                return panel1.first.second < panel2.first.second;
+            })).first.second;
+        int yMax = (*std::max_element(mazeMap.begin(), mazeMap.end(),
+            [](const auto& panel1, const auto& panel2) {
+                return panel1.first.second < panel2.first.second;
+            })).first.second;
+        return { 0 - xMin,0 - yMin };
+    }
+
     std::pair<long long, long long> FindEnd(std::map<std::pair<long long, long long>, long long> mazeMap) {
         int xMin = (*std::min_element(mazeMap.begin(), mazeMap.end(),
             [](const auto& panel1, const auto& panel2) {
@@ -173,7 +193,12 @@ namespace AoC_15 {
         long long x = 0;
         long long y = 0;
         while (SearchMaze(computer, x, y, arena)) {}
-        return 336;
+
+        auto start = FindEnd(arena);
+        auto end = FindStart(arena);
+        auto maze = MapToMaze(arena);
+        FloodFill(maze, end);
+        return maze[start.first][start.second];
     }
 
     int B(std::vector<long long> program) {
