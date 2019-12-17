@@ -4,6 +4,7 @@
 #include <map>
 #include <numeric>
 #include <algorithm>
+#include <sstream>
 
 #include "Classes/IntCodeCPU/IntCodeCPU.h"
 
@@ -58,18 +59,114 @@ namespace AoC_17 {
         return alignmentSum;
     }
 
-    int B(std::vector<long long> program) {
-        /*
-        L,4,L,10,L,6,L,4,L,10,L,6,L,6,L,4,R,8,R,8,L,6,R,8,L,10,L,8,L,8,L,4,L,10,L,6,L,6,R,8,L,10,L,8,L,8,L,6,L,4,R,8,R,8,L,6,R,8,L,10,L,8,L,8,L,4,L,10,L,6,L,6,L,4,R,8,R,8
+    std::pair<std::pair<int, int>, std::pair<int, int>> GetPosAndDir(std::vector<std::vector<char>> scaffold) {
+        for (int y = 0; y < scaffold.size(); y++) {
+            for (int x = 0; x < scaffold[0].size(); x++) {
+                if (scaffold[y][x] == '^') {
+                    return { {x,y},{0,-1} };
+                }
+                else if (scaffold[y][x] == '>') {
+                    return { {x,y},{1,0} };
+                }
+                else if (scaffold[y][x] == 'v') {
+                    return { {x,y},{0,1} };
+                }
+                else if (scaffold[y][x] == '<') {
+                    return { {x,y},{-1,0} };
+                }
+            }
+        }
+    }
 
-        A,A,B,C,A,C,B,C,A,B
-        L,4,L,10,L,6
-        L,6,L,4,R,8,R,8
-        L,6,R,8,L,10,L,8,L,8
-        */
+    bool InRange(std::vector<std::vector<char>> scaffold, std::pair<int, int> pos, std::pair<int, int> dir) {
+        return pos.second + dir.second > -1
+            && pos.first + dir.first > -1
+            && pos.second + dir.second < scaffold.size()
+            && pos.first + dir.first < scaffold[0].size();
+    }
+
+    char GetDirChange(std::pair<int, int> dir, std::pair<int, int> newDir) {
+        if (dir.first == 0) {
+            if (dir.second == 1) {
+                return newDir.first == 1 ? 'L' : 'R';
+            }else{
+                return newDir.first == 1 ? 'R' : 'L';
+            }
+        }else{
+            if (dir.first == 1) {
+                return newDir.second == 1 ? 'R' : 'L';
+            }
+            else {
+                return newDir.second == 1 ? 'L' : 'R';
+            }
+        }
+    }
+
+    std::string GetFullPath(std::vector<std::vector<char>> scaffold) {
+        std::pair<std::pair<int, int>, std::pair<int, int>> PosDir = GetPosAndDir(scaffold);
+        std::vector<std::pair<int, int>> dirs = { {0,-1},{1,0},{0,1},{-1,0} };
+        std::string output = "";
+        while (true) {
+            int movSteps = 0;
+            while (InRange(scaffold, PosDir.first, PosDir.second) && scaffold[PosDir.first.second + PosDir.second.second][PosDir.first.first + PosDir.second.first] == '#') {
+                movSteps++;
+                PosDir.first.second += PosDir.second.second;
+                PosDir.first.first += PosDir.second.first;
+            }
+            if (movSteps) {
+                output += std::to_string(movSteps) + ',';
+            }
+            for (auto& dir : dirs) {
+                if ((std::abs(PosDir.second.first) == 1 && dir.first == 0) || (std::abs(PosDir.second.second) == 1 && dir.second == 0)) {
+                    if (InRange(scaffold, PosDir.first, dir) && scaffold[PosDir.first.second + dir.second][PosDir.first.first + dir.first] == '#') {
+                        output += GetDirChange(PosDir.second, dir);
+                        output += ',';
+                        PosDir.second = dir;
+                        break;
+                    }
+                }
+            }
+            if (scaffold[PosDir.first.second + PosDir.second.second][PosDir.first.first + PosDir.second.first] == '.') {
+                break;
+            }
+        }
+        return output.substr(0, output.length() - 1);
+    }
+
+    int CountSubstring(std::string str, std::string substr) {
+        // From https://stackoverflow.com/a/22489298
+        int occurrences = 0;
+        std::string::size_type pos = 0;
+        while ((pos = str.find(substr, pos)) != std::string::npos) {
+            ++occurrences;
+            pos += substr.length();
+        }
+        return occurrences;
+    }
+
+    std::vector<std::string> SeparatePath(std::string path) {
+        std::string mainRoutine = "";
+        std::string moveFunction1 = "";
+        std::string moveFunction2 = "";
+        std::string moveFunction3 = "";
+
+        // find substrings
+
+        mainRoutine = "A,A,B,C,A,C,B,C,A,B";
+        moveFunction1 = "L,4,L,10,L,6";
+        moveFunction2 = "L,6,L,4,R,8,R,8";
+        moveFunction3 = "L,6,R,8,L,10,L,8,L,8";
+        return { mainRoutine, moveFunction1, moveFunction2, moveFunction3 };
+    }
+
+    int B(std::vector<long long> program) {
+        std::string fullPath = GetFullPath(GetMap(program));
+        std::vector<std::string> paths = SeparatePath(fullPath);
+        std::stringstream ss;
+        ss << paths[0] << '\n' << paths[1] << '\n' << paths[2] << '\n' << paths[3] << "\nn\n";
         IntCodeCPU computer(program);
         computer.memory[0] = 2;
-        for (const char& c : "A,A,B,C,A,C,B,C,A,B\nL,4,L,10,L,6\nL,6,L,4,R,8,R,8\nL,6,R,8,L,10,L,8,L,8\nn\n") {
+        for (const char& c : ss.str()) {
             computer.RunToInput();
             computer.Input(c);
         }
