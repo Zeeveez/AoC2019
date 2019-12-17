@@ -256,6 +256,8 @@ std::map<std::string, std::pair<int, std::vector<std::pair<int, std::string>>>> 
 
 std::vector<long long> AoC_15_Input = Parser::LoadCSV(15);
 
+std::string AoC_16_Input = Parser::LoadSingleLine(16);
+
 std::vector<long long> AoC_17_Input = Parser::LoadCSV(17);
 
 #endif
