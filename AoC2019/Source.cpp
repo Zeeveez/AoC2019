@@ -58,8 +58,8 @@ int main() {
     std::cout << "15B:\t" << AoC_15::B(AoC_15_Input) << "\n";
     //std::cout << "16A:\t" << AoC_16::A() << "\n";
     //std::cout << "16B:\t" << AoC_16::B() << "\n";
-    //std::cout << "17A:\t" << AoC_17::A() << "\n";
-    //std::cout << "17B:\t" << AoC_17::B() << "\n";
+    std::cout << "17A:\t" << AoC_17::A(AoC_17_Input) << "\n";
+    std::cout << "17B:\t" << AoC_17::B(AoC_17_Input) << "\n";
     //std::cout << "18A:\t" << AoC_18::A() << "\n";
     //std::cout << "18B:\t" << AoC_18::B() << "\n";
     //std::cout << "19A:\t" << AoC_19::A() << "\n";
